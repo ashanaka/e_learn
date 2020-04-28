@@ -1,0 +1,34 @@
+{
+  "name": "e_learn_project",
+  "version": "1.0.0",
+  "description": "e-Learning platfor for making online classes",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ashanaka/e_learn.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ashanaka/e_learn/issues"
+  },
+  "homepage": "https://github.com/ashanaka/e_learn#readme",
+  "dependencies": {
+    "@handlebars/allow-prototype-access": "^1.0.3",
+    "bcrypt": "^4.0.1",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^4.0.3",
+    "express-session": "^1.17.1",
+    "handlebars": "^4.7.6",
+    "method-override": "^3.0.0",
+    "mongoose": "^5.9.10",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0"
+  }
+}
