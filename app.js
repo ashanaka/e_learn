@@ -33,7 +33,7 @@ app.use(passport.session());
 app.use(methodOverride('_method'));
 
 // Load routes
-// const users = require('./routes/users');
+const users = require('./routes/users');
 
 // Handlebars Middleware
 app.engine('handlebars', exphbs({
@@ -92,6 +92,8 @@ app.get('/about', (req, res) => {
 
 
 // Use routes
-// app.use('/users', users);
+app.use('/users', users);
 
+
+// Connect with the server port
 app.listen(process.env.PORT || 5000, process.env.IP);
