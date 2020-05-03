@@ -3,7 +3,7 @@ const exphbs = require('express-handlebars');
 const flash = require('connect-flash');
 const session = require('express-session');
 const Handlebars = require('handlebars');
-const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access')
+const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access')
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
@@ -35,15 +35,26 @@ app.use(methodOverride('_method'));
 // Load routes
 const users = require('./routes/users');
 
-// Handlebars Middleware
-app.engine('handlebars', exphbs({
+const hbs = exphbs.create({
     defaultLayout: 'main',
-    handlebars: allowInsecurePrototypeAccess(Handlebars)
-}));
+    handlebars: allowInsecurePrototypeAccess(Handlebars),
+    helpers: {
+        if_equal: function (a, b, opts) {
+            if (a == b) {
+                return opts.fn(this)
+            } else {
+                return opts.inverse(this)
+            }
+        }
+    }
+});
+// Handlebars Middleware
+app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
+
 // Passport Config
-// require('./config/passport')(passport);
+require('./config/passport')(passport);
 
 mongoose.Promise = global.Promise;
 // Connect to mongoose
