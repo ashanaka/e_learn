@@ -36,6 +36,7 @@ router.post('/enroll/:id', (req, res) => {
         });
 });
 
+// View student's enrolled course lis
 router.get('/mycourses', (req, res) => {
     let courseList = [];
 
@@ -50,6 +51,18 @@ router.get('/mycourses', (req, res) => {
             res.render('students/mycourses', {
                 courseList: courseList
             });
+        });
+});
+
+// Unsubscribe Course
+router.delete('/:id', (req, res) => {
+    StudentEnrolls.deleteOne({
+        courseId: req.params.id,
+        studentId: req.user.id
+    })
+        .then(() => {
+            req.flash('success_msg', 'Course unsubscribed');
+            res.redirect('/students/mycourses');
         });
 });
 

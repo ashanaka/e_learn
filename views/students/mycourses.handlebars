@@ -3,6 +3,7 @@
         <tr>
             <th>Title</th>
             <th>Grade</th>
+            <th>Continue Learning</th>
             <th>View Course</th>
             <th>Unsubscribe Course</th>
         </tr>
@@ -15,12 +16,15 @@
                 {{course.grade}}
             </td>
             <td>
+                <a href="/courses/view/{{course.id}}" class="btn btn-info">Resume</a>
+            </td>
+            <td>
                 <a href="/courses/view/{{course.id}}" class="btn btn-success">View</a>
             </td>
             <td>
-                <form method="post" action="/courses/{{course.id}}?_method=DELETE">
+                <form method="post" action="/students/{{course.id}}?_method=DELETE">
                     <input type="hidden" name="_method" value="DELETE">
-                    <button class="btn btn-danger" type="submit">Remove</button>
+                    <button class="btn btn-danger" type="submit">Unsubscribe</button>
                 </form>
             </td>
         </tr>
