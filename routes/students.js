@@ -2,9 +2,12 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 
-// Load Course Model
+// Load StudentEnroll Model
 require('../models/StudentEnrolls');
 const StudentEnrolls = mongoose.model('studentenrolls');
+// Load Course Model
+require('../models/Course');
+const Course = mongoose.model('courses');
 
 // Enroll student via POST
 router.post('/enroll/:id', (req, res) => {
@@ -15,7 +18,7 @@ router.post('/enroll/:id', (req, res) => {
     })
         .then(studentenrolls => {
             if (studentenrolls) {
-                req.flash('error_msg', 'You already enrolled');
+                req.flash('error_msg', 'You have already enrolled');
                 res.redirect('/courses/browse');
             } else {
                 const newStudentEnrolls = new StudentEnrolls({
@@ -30,6 +33,23 @@ router.post('/enroll/:id', (req, res) => {
                     });
             }
 
+        });
+});
+
+router.get('/mycourses', (req, res) => {
+    let courseList = [];
+
+    StudentEnrolls.find({ studentId: req.user.id })
+        .then(studentenrolls => {
+            studentenrolls.forEach(studentenroll => {
+                Course.findOne({ _id: studentenroll.courseId })
+                    .then(course => {
+                        courseList.push({ course });
+                    });
+            });
+            res.render('students/mycourses', {
+                courseList: courseList
+            });
         });
 });
 

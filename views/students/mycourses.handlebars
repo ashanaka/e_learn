@@ -1,0 +1,31 @@
+<div class="table-responsive">
+    <table class="table">
+        <tr>
+            <th>Title</th>
+            <th>Grade</th>
+            <th>View Course</th>
+            <th>Unsubscribe Course</th>
+        </tr>
+        {{#each courseList}}
+        <tr>
+            <td>
+                {{course.title}}
+            </td>
+            <td>
+                {{course.grade}}
+            </td>
+            <td>
+                <a href="/courses/view/{{course.id}}" class="btn btn-success">View</a>
+            </td>
+            <td>
+                <form method="post" action="/courses/{{course.id}}?_method=DELETE">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button class="btn btn-danger" type="submit">Remove</button>
+                </form>
+            </td>
+        </tr>
+        {{else}}
+        <p>No courses</p>
+        {{/each}}
+    </table>
+</div>

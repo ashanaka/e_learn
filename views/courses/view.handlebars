@@ -1,7 +1,10 @@
 <div class="jumbotron">
   <h1 class="display-4">{{course.title}}</h1>
   <p class="lead">{{course.description}}</p>
+  <h5>--{{teacher.name}}--</h5>
   <p>For Grade {{course.grade}}</p>
+  {{#if_equal user.userType 'teacher'}}
   <hr class="my-4">
   <a class="btn btn-primary" href="#" role="button">Add video</a>
+  {{/if_equal}}
 </div>

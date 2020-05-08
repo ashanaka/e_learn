@@ -5,6 +5,12 @@ const mongoose = require('mongoose');
 // Load Course Model
 require('../models/Course');
 const Course = mongoose.model('courses');
+// Load StudentEnrolls Model
+require('../models/StudentEnrolls');
+const StudentEnrolls = mongoose.model('studentenrolls');
+// Load User Model
+require('../models/User');
+const User = mongoose.model('users');
 
 // Course GET Register Route
 router.get('/register', (req, res) => {
@@ -42,6 +48,7 @@ router.post('/register', (req, res) => {
 
 // view the course list of particular teacher
 router.get('/courses', (req, res) => {
+
     Course.find({ teacherId: req.user.id })
         .sort({ date: 'desc' })
         .then(courses => {
@@ -69,15 +76,15 @@ router.get('/view/:id', (req, res) => {
         _id: req.params.id
     })
         .then(course => {
-            if (course.teacherId != req.user.id) {
-                req.flash('error_msg', 'Not Authorized');
-                res.redirect('/courses/courses');
-            } else {
-                res.render('courses/view', {
-                    course: course
+            User.findOne({
+                _id: course.teacherId
+            })
+                .then(userTeacher => {
+                    res.render('courses/view', {
+                        course: course,
+                        teacher: userTeacher
+                    });
                 });
-            }
-
         });
 });
 
