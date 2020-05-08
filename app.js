@@ -35,6 +35,7 @@ app.use(methodOverride('_method'));
 // Load routes
 const users = require('./routes/users');
 const courses = require('./routes/courses');
+const students = require('./routes/students');
 
 const hbs = exphbs.create({
     defaultLayout: 'main',
@@ -106,6 +107,7 @@ app.get('/about', (req, res) => {
 // Use routes
 app.use('/users', users);
 app.use('/courses', courses);
+app.use('/students', students);
 
 
 // Connect with the server port

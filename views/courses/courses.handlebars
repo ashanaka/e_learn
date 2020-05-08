@@ -1,4 +1,5 @@
 <div class="table-responsive">
+    {{#if_equal user.userType 'teacher'}}
     <table class="table">
         <tr>
             <th>Title</th>
@@ -28,4 +29,31 @@
         <p>No courses</p>
         {{/each}}
     </table>
+    {{/if_equal}}
+    {{#if_equal user.userType 'student'}}
+    <table class="table">
+        <tr>
+            <th>Title</th>
+            <th>Grade</th>
+            <th>Enroll Course</th>
+        </tr>
+        {{#each courses}}
+        <tr>
+            <td>
+                {{title}}
+            </td>
+            <td>
+                {{grade}}
+            </td>
+            <td>
+                <form method="post" action="/students/enroll/{{id}}">
+                    <button class="btn btn-warning" type="submit">Enroll</button>
+                </form>
+            </td>
+        </tr>
+        {{else}}
+        <p>No courses</p>
+        {{/each}}
+    </table>
+    {{/if_equal}}
 </div>

@@ -40,7 +40,7 @@ router.post('/register', (req, res) => {
     }
 });
 
-// view the course list to edit or remove videos
+// view the course list of particular teacher
 router.get('/courses', (req, res) => {
     Course.find({ teacherId: req.user.id })
         .sort({ date: 'desc' })
@@ -49,6 +49,17 @@ router.get('/courses', (req, res) => {
                 courses: courses
             });
         });
+});
+
+// View full list of course list (When browsing)
+router.get('/browse', (req, res) => {
+    Course.find()
+        .sort({ dateAdded: 'desc' })
+        .then(courses => {
+            res.render('courses/courses', {
+                courses: courses
+            })
+        })
 });
 
 

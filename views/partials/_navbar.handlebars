@@ -20,8 +20,8 @@
             {{#if_equal user.userType "teacher" }}
             <li class="nav-item">
                 <div class="dropdown show">
-                    <a class="nav-link dropdown-toggle" href="#" role="button"
-                        id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Courses
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -33,13 +33,27 @@
 
             <li class="nav-item">
                 <div class="dropdown show">
-                    <a class="nav-link dropdown-toggle" href="#" role="button"
-                        id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Students
                     </a>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                         <a class="dropdown-item" href="#">Add Students</a>
                         <a class="dropdown-item" href="#">View Students</a>
+                    </div>
+                </div>
+            </li>
+            {{/if_equal}}
+            {{#if_equal user.userType "student" }}
+            <li class="nav-item">
+                <div class="dropdown show">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Courses
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="/courses/browse">Find new courses</a>
+                        <a class="dropdown-item" href="/courses/courses">View My Courses</a>
                     </div>
                 </div>
             </li>
