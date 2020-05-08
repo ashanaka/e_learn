@@ -15,22 +15,52 @@
             <li class="nav-item">
                 <a class="nav-link" href="#">Contact Us</a>
             </li>
+
+            {{!-- // UI Functions for user 'Teacher' --}}
             {{#if_equal user.userType "teacher" }}
             <li class="nav-item">
-                <a class="nav-link" href="/employees/add"> | Add New Course</a>
+                <div class="dropdown show">
+                    <a class="nav-link dropdown-toggle" href="#" role="button"
+                        id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Courses
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="/courses/register">Create a Course</a>
+                        <a class="dropdown-item" href="/courses/courses">View My Courses</a>
+                    </div>
+                </div>
             </li>
+
             <li class="nav-item">
-                <a class="nav-link" href="/employees"> | View Courses</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/details/add"> | Add Details</a>
+                <div class="dropdown show">
+                    <a class="nav-link dropdown-toggle" href="#" role="button"
+                        id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Students
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="#">Add Students</a>
+                        <a class="dropdown-item" href="#">View Students</a>
+                    </div>
+                </div>
             </li>
             {{/if_equal}}
         </ul>
         <ul class="navbar-nav ml-auto">
+            {{!-- Display user name after login --}}
             {{#if user}}
             <li class="nav-item">
-                <a class="nav-link" href="/users/edit/{{user.id}}">Hi, {{user.name}}</a>
+                <div class="dropdown show">
+                    <a class="nav-link dropdown-toggle" href="/users/edit/{{user.id}}" role="button"
+                        id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Hi, {{user.name}}
+                    </a>
+
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="#">View Profile</a>
+                        <a class="dropdown-item" href="#">Edit Profile</a>
+                        <a class="dropdown-item" href="#">Notifications</a>
+                    </div>
+                </div>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/users/logout">Logout</a>
